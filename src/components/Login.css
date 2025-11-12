@@ -1,3 +1,20 @@
+/* Add this to your existing Login.css */
+.link-button {
+  background: none;
+  border: none;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+}
+
 .login-container {
   min-height: 100vh;
   display: flex;
