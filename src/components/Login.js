@@ -95,7 +95,17 @@ const Login = () => {
             <a href="/signup" className="link">Sign up</a>
           </p>
           <p>
-            <a href="#" className="link">Forgot password?</a>
+            {/* Changed from href="#" to button */}
+            <button 
+              type="button" 
+              className="link-button"
+              onClick={(e) => {
+                e.preventDefault();
+                alert('Forgot password functionality would go here');
+              }}
+            >
+              Forgot password?
+            </button>
           </p>
         </div>
       </div>
