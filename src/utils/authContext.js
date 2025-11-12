@@ -14,8 +14,6 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // You could verify the token here with an API call
-      // For now, we'll assume it's valid
       try {
         const decodedToken = parseJWT(token);
         setUser(decodedToken);
@@ -28,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/login`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,13 +45,14 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: data.message };
       }
     } catch (error) {
-      return { success: false, message: 'Network error' };
+      console.error('Login error:', error);
+      return { success: false, message: 'Network error: ' + error.message };
     }
   };
 
   const signup = async (name, email, password) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +71,8 @@ export const AuthProvider = ({ children }) => {
         return { success: false, message: data.message };
       }
     } catch (error) {
-      return { success: false, message: 'Network error' };
+      console.error('Signup error:', error);
+      return { success: false, message: 'Network error: ' + error.message };
     }
   };
 
