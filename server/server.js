@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/database'); // Use Mongoose connection
+const connectDB = require('./config/database');
 
 // Load env vars
 dotenv.config();
@@ -14,9 +14,13 @@ const app = express();
 // Body parser middleware
 app.use(express.json());
 
-// Enable CORS
+// Enable CORS - Update this to include your frontend URL
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    'https://my-landing-page-frontend.vercel.app', // Replace with your actual frontend URL
+    'http://localhost:3000', // For local development
+    'http://localhost:3001'
+  ],
   credentials: true
 }));
 
